@@ -8,24 +8,20 @@ jobs:
     steps:
       - run: |
           UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
-          L='https://www.hellowork.com/fr-fr/emploi/recherche.html?k=d%C3%A9veloppeur&l=Paris&c=Alternance'
+          L='https://www.hellowork.com/fr-fr/emploi/recherche.html?k=d%C3%A9veloppeur&l=Paris&c=Alternance&d=w'
           curl -sSL -A "$UA" -o list.html -w 'list %{http_code} %{size_download}\n' "$L"
-          curl -sSL -A "$UA" -o cat.html -w 'cat %{http_code} %{size_download}\n' 'https://www.hellowork.com/fr-fr/alternance/metier_developpeur-web.html'
-          for f in list.html cat.html; do
-            echo "=== $f"; grep -o '/fr-fr/emplois/[0-9]*\.html' $f | sort -u | wc -l
-            grep -o 'application/ld+json' $f | wc -l
-            grep -o '<script type="application/ld+json">[^<]\{0,600\}' $f | head -3
-            grep -o '.\{300\}/fr-fr/emplois/[0-9]*\.html.\{400\}' $f | head -2
-            grep -io 'rss[^"]\{0,80\}' $f | head -3
-          done
-          ID=$(grep -o '/fr-fr/emplois/[0-9]*\.html' list.html cat.html | head -1 | cut -d: -f2)
-          curl -sSL -A "$UA" -o det.html -w "detail %{http_code} %{size_download} $ID\n" "https://www.hellowork.com$ID"
+          ID=$(grep -o '/fr-fr/emplois/[0-9]*\.html' list.html | head -1)
+          curl -sSL -A "$UA" -o det.html -w "detail %{http_code} $ID\n" "https://www.hellowork.com$ID"
           python3 - <<'PY'
-          import re,json
+          import re,html
+          l=open('list.html',encoding='utf-8',errors='ignore').read()
+          i=l.find('/fr-fr/emplois/')
+          print('LISTCARD', re.sub(r'\s+',' ',l[i-1500:i+2500]))
+          print('NB_RESULTS', re.findall(r'(\d[\d\s ]*) offres?',l)[:3])
           h=open('det.html',encoding='utf-8',errors='ignore').read()
-          for m in re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>',h,re.S):
-              try:
-                  d=json.loads(m); s=json.dumps(d,ensure_ascii=False)
-                  print('LD', s[:1800])
-              except Exception as e: print('LDERR',e,m[:200])
+          print('TITLE', re.findall(r'<title>(.*?)</title>',h,re.S)[:1])
+          print('META', re.findall(r'<meta[^>]+(?:property|name)="(?:og:[a-z]+|description)"[^>]*>',h)[:8])
+          for k in ['datePosted','hiringOrganization','JobPosting','validThrough','employmentType','data-cy','application/json']:
+              j=h.find(k); print('KEY',k,j, re.sub(r'\s+',' ',h[max(0,j-200):j+500]) if j>=0 else '')
+          j=h.find('<h1'); print('H1', re.sub(r'\s+',' ',h[j:j+2500]))
           PY
