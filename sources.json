@@ -1,10 +1,19 @@
 [
   {
-    "name": "HelloWork · Développeur",
+    "name": "HelloWork · Développeur web",
     "api": "hellowork",
     "hint": "alternance",
     "params": {
-      "k": "développeur",
+      "k": "développeur web",
+      "l": "Île-de-France"
+    }
+  },
+  {
+    "name": "HelloWork · Développeur informatique",
+    "api": "hellowork",
+    "hint": "alternance",
+    "params": {
+      "k": "développeur informatique",
       "l": "Île-de-France"
     }
   },
