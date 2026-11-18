@@ -1,12 +1,10 @@
-import { readFile } from 'node:fs/promises';
-import { fetchAllSources } from './src/sources.js';
-import { dedupKey } from './src/index.js';
-const sources = JSON.parse(await readFile('sources.json', 'utf8'));
-const all = await fetchAllSources(sources);
-const seen = new Set(); const uniq = all.filter((o) => { const k = dedupKey(o); if (seen.has(k)) return false; seen.add(k); return true; });
-console.log('UNIQ', uniq.length);
-for (const o of uniq) {
-  try { await o.enrich?.(); } catch (e) { console.log('ERR', o.link, e.message); }
-  await new Promise((r) => setTimeout(r, 700));
-  console.log('OFFER ' + JSON.stringify({ t: o.title, c: o.company, l: o.location, d: o.duration, s: o.salary, date: o.date, u: o.link, desc: o.description.slice(0, 700) }));
+import { applyJobPosting } from './src/sources.js';
+const ids = ['85186653','78437773','79044890','79532787','84839827','85123321','84793741','84831625','84116971','85496957','75292761'];
+for (const id of ids) {
+  const url = `https://www.hellowork.com/fr-fr/emplois/${id}.html`;
+  const html = await (await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' } })).text();
+  const o = { link: url, title: '', company: null, location: null, skills: [], description: '' };
+  const ok = applyJobPosting(o, html);
+  console.log('FULL ' + JSON.stringify({ id, ok, t: o.title, c: o.company, desc: o.description.slice(0, 2600) }));
+  await new Promise((r) => setTimeout(r, 800));
 }
