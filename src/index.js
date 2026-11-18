@@ -56,6 +56,13 @@ async function main() {
     }
     if (i > 0) await sleep(LLM_DELAY_MS);
     const label = `${offer.title} — ${offer.company ?? '?'}`;
+    if (offer.enrich) {
+      try {
+        await offer.enrich(); // fiche détaillée (HelloWork) lue seulement pour les offres nouvelles
+      } catch (err) {
+        console.warn(`   ⚠️ fiche illisible pour « ${label} » : ${err.message}`);
+      }
+    }
     let verdict;
     try {
       verdict = await scoreOffer(offer);

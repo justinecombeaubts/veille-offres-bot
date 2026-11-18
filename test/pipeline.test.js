@@ -97,3 +97,24 @@ test('récupère les deux API (fetch simulé), en envoyant les bons paramètres'
     globalThis.fetch = realFetch;
   }
 });
+
+const HW_LIST = `<div data-cy="serpCard" > <div class="flex flex-col"> <header class="w-10/12"> <div> <a href="/fr-fr/emplois/85525999.html" title="D&#xE9;veloppeur Fullstack en Alternance H/F - EEMI Paris" data-cy="offerTitle" aria-label="x" > <h3 class="inline"> <span class="block typo-l">D&#xE9;veloppeur Fullstack en Alternance H/F</span> <span class="inline typo-s">EEMI Paris</span> </h3> </a> </div> </header> <div class="mt-6"> <div class="flex gap-3 flex-wrap"> <div class="readonly tag-secondary-s w-fit border-0" data-cy="localisationCard" > Paris - 75 </div> <div class="readonly tag-secondary-s w-fit border-0" data-cy="contractCard" > Alternance </div> <div class="readonly tag-secondary-s typo-s-bold w-fit border-0">800 - 1&#x202F;800 &#x20AC; / mois</div> <div class="readonly tag-secondary-s border-0 w-fit" data-cy="contractTag" > 12 mois </div> </div> </div> </div> <div class="mt-6"> <span class="btn-outline-m">Voir l’offre</span> <div class="typo-s text-grey-500 pl-1 pt-1">il y a 2 jours</div> </div>`;
+const HW_DETAIL = `<script type="application/ld&#x2B;json"> {"@context":"https://schema.org","@type":"JobPosting","title":"Développeur Fullstack en Alternance H/F","description":"<h2>Les missions</h2><p>Node &amp; React</p>","datePosted":"2026-11-16T09:18:20Z","hiringOrganization":{"@type":"Organization","name":"EEMI Paris","logo":"https://f.hellowork.com/img/entreprises/160_160/212478.png"},"industry":["Enseignement","Formation"],"jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressRegion":"Île-de-France"}},"skills":["HTML","Git"]} </script>`;
+
+test('lit une page de résultats HelloWork et la fiche JSON-LD', async () => {
+  const { parseHelloworkList, applyJobPosting } = await import('../src/sources.js');
+  const [o] = parseHelloworkList(HW_LIST, { name: 'HW', hint: 'alternance' });
+  assert.equal(o.id, 'hw:85525999');
+  assert.equal(o.title, 'Développeur Fullstack en Alternance H/F');
+  assert.equal(o.company, 'EEMI Paris');
+  assert.equal(o.location, 'Paris - 75');
+  assert.equal(o.contract, 'Alternance');
+  assert.equal(o.duration, '12 mois');
+  assert.equal(o.salary, '800 - 1 800 € / mois');
+  assert.ok(Date.now() - o.date.getTime() > 1.9 * 864e5);
+  assert.ok(applyJobPosting(o, HW_DETAIL));
+  assert.match(o.description, /^Secteur de l'employeur : Enseignement, Formation\. Les missions Node & React/);
+  assert.equal(o.date.toISOString(), '2026-11-16T09:18:20.000Z');
+  assert.deepEqual(o.skills, ['HTML', 'Git']);
+  assert.match(o.logo, /^https:/);
+});
