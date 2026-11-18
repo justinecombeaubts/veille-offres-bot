@@ -1,6 +1,6 @@
 # 🎓 ColibrIA Alternance — veille d'offres sur Discord
 
-Le petit frère de [ColibrIA](https://github.com/justinecombeaubts/veille-ia-bot), avec le même fonctionnement et le même style de messages. Toutes les 12 heures, GitHub Actions interroge les API publiques d'offres (France Travail et La bonne alternance), écarte les doublons, fait noter chaque **nouvelle** offre par un LLM selon `profil.md` (tiré de mon CV), puis poste les offres pertinentes (note ≥ 6) dans mon salon Discord dédié.
+Le petit frère de [ColibrIA](https://github.com/justinecombeaubts/veille-ia-bot), avec le même fonctionnement et le même style de messages. Toutes les 12 heures, GitHub Actions lit les offres d'alternance de HelloWork (sans clé) et, si tu as ajouté leurs clés, des API publiques France Travail et La bonne alternance, écarte les doublons, fait noter chaque **nouvelle** offre par un LLM selon `profil.md` (tiré de mon CV), puis poste les offres pertinentes (note ≥ 6) dans mon salon Discord dédié.
 
 ```
 API d'offres ─► nouvelles offres (< 7 j, sans doublon) ─► LLM + profil.md ─► note ≥ 6 ? ─► webhook Discord
@@ -39,7 +39,7 @@ Dans ce dépôt : **Settings → Secrets and variables → Actions → New repos
 
 Pour séparer plus tard les offres dans plusieurs salons, ajoute-les dans `channels.json` et mets un JSON `{"clé-du-salon": "url", …}` dans un secret `DISCORD_WEBHOOKS`, comme dans ColibrIA.
 
-Une source sans clé est simplement ignorée : tu peux démarrer avec une seule des deux API.
+**HelloWork marche sans aucune clé** : avec seulement `DISCORD_WEBHOOK_URL` et `GEMINI_API_KEY`, le bot tourne déjà. Une API sans clé est simplement ignorée, tu peux ajouter La bonne alternance ou France Travail plus tard.
 
 ### 4. Lancer
 
@@ -51,12 +51,15 @@ Onglet **Actions → Veille offres → Run workflow**. Coche **demo** pour envoy
 |---|---|
 | changer ce que je cherche ou ce que j'exclus | `profil.md` (envoyé tel quel au LLM) |
 | ajouter une recherche (mots-clés, département, codes ROME) | `sources.json` |
+| vérifier que les sources répondent | `npm run check` (sans LLM ni Discord) |
 | être plus ou moins sélective | variable `MIN_SCORE` (défaut `6`) |
 | remonter plus loin dans le temps | variable `MAX_AGE_DAYS` (défaut `7`) |
 | changer de modèle | variable `LLM_MODEL` (défaut `gemini-3.5-flash-lite`) |
 | changer la fréquence | le `cron` dans `.github/workflows/veille-offres.yml` |
 
 Paramètres utiles dans `sources.json` :
+
+- **HelloWork** : `k` (mots-clés) et `l` (lieu, ex. `Île-de-France` ou `Paris`) ; le filtre alternance est ajouté automatiquement.
 
 - **France Travail** : `motsCles`, `region` (`11` = Île-de-France) ou `departement` (jusqu'à 5, séparés par des virgules), `natureContrat` (`E2` = apprentissage, `FS` = professionnalisation), `typeContrat`, `tempsPlein`, et `publieeDepuis` (jours, défaut 7) à côté de `params`.
 - **La bonne alternance** : `romes` (`M1805` = études et développement informatique, `M1806` = conseil et maîtrise d'ouvrage en SI, `M1810` = production et exploitation de SI), `departements` (liste), `target_diploma_level` (`6` = bac+3).
@@ -79,5 +82,6 @@ Aucune dépendance npm : Node 20+ suffit.
 
 ## Bon à savoir
 
-- **Welcome to the Jungle, Indeed et LinkedIn n'ont pas d'API publique** : ils ne sont pas interrogés directement. Beaucoup de leurs offres d'alternance remontent quand même via La bonne alternance, qui agrège des partenaires (le nom du partenaire s'affiche dans l'en-tête du message).
+- **Il n'existe pas de flux RSS d'offres fiable** (Indeed a fermé les siens ; Welcome to the Jungle, LinkedIn et HelloWork n'en ont pas). HelloWork est donc lu directement : page de résultats, puis la fiche de chaque nouvelle offre (données structurées JobPosting). Si HelloWork change sa mise en page, cette source affichera « aucune offre lue » dans les logs et les autres continueront.
+- Beaucoup d'annonces HelloWork viennent d'écoles ou de CFA qui recrutent pour leur formation : le LLM les écarte (le secteur de l'employeur lui est transmis).
 - Conditions d'utilisation : La bonne alternance est gratuite pour un usage non commercial ; France Travail demande de citer la source, ce que fait l'en-tête de chaque message.

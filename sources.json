@@ -1,5 +1,41 @@
 [
   {
+    "name": "HelloWork · Développeur web",
+    "api": "hellowork",
+    "hint": "alternance",
+    "params": {
+      "k": "développeur web",
+      "l": "Île-de-France"
+    }
+  },
+  {
+    "name": "HelloWork · Développeur informatique",
+    "api": "hellowork",
+    "hint": "alternance",
+    "params": {
+      "k": "développeur informatique",
+      "l": "Île-de-France"
+    }
+  },
+  {
+    "name": "HelloWork · Automatisation & IA",
+    "api": "hellowork",
+    "hint": "alternance",
+    "params": {
+      "k": "automatisation",
+      "l": "Île-de-France"
+    }
+  },
+  {
+    "name": "HelloWork · Intelligence artificielle",
+    "api": "hellowork",
+    "hint": "alternance",
+    "params": {
+      "k": "intelligence artificielle",
+      "l": "Île-de-France"
+    }
+  },
+  {
     "name": "La bonne alternance · Dev & SI",
     "api": "labonnealternance",
     "hint": "alternance",
