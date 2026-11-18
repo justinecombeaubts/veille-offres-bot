@@ -63,6 +63,12 @@ async function main() {
         console.warn(`   ⚠️ fiche illisible pour « ${label} » : ${err.message}`);
       }
     }
+    // École ou organisme de formation qui recrute pour son propre cursus : écartée sans appeler le LLM
+    if (/^Secteur de l'employeur : [^.]*Enseignement/.test(offer.description)) {
+      console.log(`⛔ école/CFA ${label}`);
+      markSeen(offer);
+      continue;
+    }
     let verdict;
     try {
       verdict = await scoreOffer(offer);

@@ -37,7 +37,8 @@ Expériences hors tech : maître-nageuse sauveteuse et surveillante de baignade 
 - Rythme d'alternance explicitement incompatible (ex. 1 semaine / 1 semaine, ou présence exigée le jeudi et le vendredi).
 - Ce n'est pas une alternance (CDI, CDD classique, stage, freelance, job étudiant).
 - Poste sans lien avec le dev, l'IA, l'automatisation, la data ou le support informatique (commercial, comptabilité, BTP…).
-- Offre d'école ou d'organisme de formation qui recrute des « alternants » pour remplir une formation (ce n'est pas une vraie entreprise).
+- Offre d'école, de CFA ou d'organisme de formation qui recrute des « alternants » pour remplir sa formation, y compris « pour une entreprise partenaire » avec inscription obligatoire à l'école (ISCOD, Studi, AURLOM, NEXA, Digital School of Paris, H3 Campus, IRIS, 2i Academy, aivancity, Ynov…). Ce n'est pas une vraie entreprise.
+- Offre réservée à un Master, bac+4/5 ou élève ingénieur.
 
 ## 5. Grille de notation (sur 10)
 
