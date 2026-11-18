@@ -4,8 +4,8 @@ import { CHANNEL_KEYS, channelsForPrompt } from './channels.js';
 const OUTPUT_RULES = `
 ## CONSIGNE DE SORTIE
 Tu reçois UNE offre (intitulé, entreprise, lieu, contrat, description…). Procède ainsi :
-1. Vérifie les exclusions du profil (anglais C1+, hors IDF, niveau ou rythme incompatible, poste hors sujet, école qui recrute pour sa formation). Si une exclusion s'applique : note 0, salon "aucun", et explique-la dans "exclusion".
-2. Choisis le salon selon le TYPE DE CONTRAT réel de l'offre (alternance, stage ou job étudiant), pas selon la requête qui l'a trouvée.
+1. Vérifie les exclusions du profil (pas une alternance, anglais C1+, hors IDF, niveau ou rythme incompatible, poste hors sujet, école qui recrute pour sa formation). Si une exclusion s'applique : note 0, salon "aucun", et explique-la dans "exclusion".
+2. Sinon, salon "alternance".
 3. Note l'adéquation avec le profil selon la grille, puis rédige pour Justine (tutoiement).
 
 Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour :

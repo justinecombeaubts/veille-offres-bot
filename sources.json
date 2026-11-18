@@ -58,33 +58,5 @@
       "region": "11",
       "natureContrat": "E2,FS"
     }
-  },
-  {
-    "name": "France Travail · Stage dev",
-    "api": "francetravail",
-    "hint": "stage",
-    "params": {
-      "motsCles": "stage développeur",
-      "region": "11"
-    }
-  },
-  {
-    "name": "France Travail · Job étudiant tech",
-    "api": "francetravail",
-    "hint": "job-etudiant",
-    "params": {
-      "motsCles": "étudiant informatique",
-      "region": "11",
-      "tempsPlein": "false"
-    }
-  },
-  {
-    "name": "France Travail · Job étudiant BNSSA",
-    "api": "francetravail",
-    "hint": "job-etudiant",
-    "params": {
-      "motsCles": "BNSSA",
-      "departement": "75,92,93,94,95"
-    }
   }
 ]

@@ -1,7 +1,7 @@
 {
   "name": "veille-offres-bot",
   "version": "1.0.0",
-  "description": "Veille d'offres d'alternance, de stage et de job étudiant notées par un LLM selon mon CV, puis envoyées sur Discord",
+  "description": "Veille d’offres d’alternance notées par un LLM selon mon CV, puis envoyées sur Discord",
   "type": "module",
   "private": true,
   "scripts": {

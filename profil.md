@@ -10,11 +10,9 @@ Ce fichier est envoyé tel quel au LLM. Il ne contient que ce qui figure dans mo
 - Intitulé visé : **Développeuse Web & IA / Automation**.
 - **Disponible immédiatement.**
 
-## 2. Ce que je cherche, par ordre de priorité
+## 2. Ce que je cherche
 
-1. **Alternance** (contrat d'apprentissage ou de professionnalisation) au rythme **3 jours en entreprise / 2 jours à l'école**. Les cours ont lieu le jeudi et le vendredi : l'entreprise doit pouvoir m'accueillir lundi, mardi, mercredi.
-2. **Stage**, à défaut d'alternance.
-3. **Job étudiant** en dernier recours : temps partiel compatible avec les cours (pas le jeudi ni le vendredi en journée).
+Uniquement une **alternance** (contrat d'apprentissage ou de professionnalisation) au rythme **3 jours en entreprise / 2 jours à l'école**. Les cours ont lieu le jeudi et le vendredi : l'entreprise doit pouvoir m'accueillir lundi, mardi, mercredi.
 
 Zone : **Paris et Île-de-France**. Télétravail partiel ou hybride bienvenu.
 
@@ -37,18 +35,17 @@ Expériences hors tech : maître-nageuse sauveteuse et surveillante de baignade 
 - Hors Île-de-France, sauf full remote explicite.
 - Niveau visé incompatible : alternance pour un BTS/bac+2 uniquement, ou master/bac+5 uniquement.
 - Rythme d'alternance explicitement incompatible (ex. 1 semaine / 1 semaine, ou présence exigée le jeudi et le vendredi).
-- Poste sans lien avec le dev, l'IA, l'automatisation, la data ou le support informatique (commercial, comptabilité, BTP…), **sauf** pour le salon job-étudiant : un job de surveillance de baignade (BNSSA) ou d'accueil est accepté.
+- Ce n'est pas une alternance (CDI, CDD classique, stage, freelance, job étudiant).
+- Poste sans lien avec le dev, l'IA, l'automatisation, la data ou le support informatique (commercial, comptabilité, BTP…).
 - Offre d'école ou d'organisme de formation qui recrute des « alternants » pour remplir une formation (ce n'est pas une vraie entreprise).
 
 ## 5. Grille de notation (sur 10)
 
 - **9–10** : alternance dev web / IA / automatisation en IDF, stack très proche de la mienne (Node.js, React, Supabase, n8n, Make, API LLM), niveau bac+3, rythme compatible.
-- **7–8** : alternance dev ou data proche de mon profil, ou stage très ciblé IA / automatisation.
+- **7–8** : alternance dev ou data proche de mon profil.
 - **5–6** : offre correcte mais stack éloignée (Java, .NET, SAP…) ou peu d'infos.
 - **3–4** : lien faible avec mon profil.
 - **0–2** : hors sujet ou exclusion.
-
-Un job étudiant ne dépasse pas 6, sauf s'il est dans la tech.
 
 ## 6. Règles de rédaction
 
