@@ -1,0 +1,29 @@
+[
+  {
+    "key": "alternance",
+    "categorie": "Offres",
+    "salon": "#alternance",
+    "emoji": "🎓",
+    "couleur": "#F2A65A",
+    "fallback": null,
+    "sujet": "Contrat d'apprentissage ou de professionnalisation (alternance), priorité n°1"
+  },
+  {
+    "key": "stage",
+    "categorie": "Offres",
+    "salon": "#stage",
+    "emoji": "🧭",
+    "couleur": "#E9C46A",
+    "fallback": "alternance",
+    "sujet": "Stage (convention de stage), à défaut d'alternance"
+  },
+  {
+    "key": "job-etudiant",
+    "categorie": "Offres",
+    "salon": "#job-étudiant",
+    "emoji": "🧃",
+    "couleur": "#F4D58D",
+    "fallback": "alternance",
+    "sujet": "Job étudiant : temps partiel, CDD court, compatible avec les cours (dernier recours)"
+  }
+]

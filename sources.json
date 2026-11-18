@@ -1,0 +1,90 @@
+[
+  {
+    "name": "La bonne alternance · Dev & SI",
+    "api": "labonnealternance",
+    "hint": "alternance",
+    "params": {
+      "romes": "M1805,M1806,M1810",
+      "departements": [
+        "75",
+        "92",
+        "93",
+        "94"
+      ],
+      "target_diploma_level": "6"
+    }
+  },
+  {
+    "name": "La bonne alternance · Grande couronne",
+    "api": "labonnealternance",
+    "hint": "alternance",
+    "params": {
+      "romes": "M1805,M1806",
+      "departements": [
+        "77",
+        "78",
+        "91",
+        "95"
+      ],
+      "target_diploma_level": "6"
+    }
+  },
+  {
+    "name": "France Travail · Alternance dev",
+    "api": "francetravail",
+    "hint": "alternance",
+    "params": {
+      "motsCles": "développeur",
+      "region": "11",
+      "natureContrat": "E2,FS"
+    }
+  },
+  {
+    "name": "France Travail · Alternance IA & automatisation",
+    "api": "francetravail",
+    "hint": "alternance",
+    "params": {
+      "motsCles": "automatisation",
+      "region": "11",
+      "natureContrat": "E2,FS"
+    }
+  },
+  {
+    "name": "France Travail · Alternance IA",
+    "api": "francetravail",
+    "hint": "alternance",
+    "params": {
+      "motsCles": "intelligence artificielle",
+      "region": "11",
+      "natureContrat": "E2,FS"
+    }
+  },
+  {
+    "name": "France Travail · Stage dev",
+    "api": "francetravail",
+    "hint": "stage",
+    "params": {
+      "motsCles": "stage développeur",
+      "region": "11"
+    }
+  },
+  {
+    "name": "France Travail · Job étudiant tech",
+    "api": "francetravail",
+    "hint": "job-etudiant",
+    "params": {
+      "motsCles": "étudiant informatique",
+      "region": "11",
+      "tempsPlein": "false"
+    }
+  },
+  {
+    "name": "France Travail · Job étudiant BNSSA",
+    "api": "francetravail",
+    "hint": "job-etudiant",
+    "params": {
+      "motsCles": "BNSSA",
+      "departement": "75,92,93,94,95"
+    }
+  }
+]
